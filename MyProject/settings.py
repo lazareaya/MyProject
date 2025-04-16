@@ -26,9 +26,6 @@ SECRET_KEY = "django-insecure-m@lb0&rc3*qyn4pq@o5o=5w4=tk)m+@5hb4r7j=p8blrfg7086
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-
-
-
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
@@ -38,9 +35,8 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS = [
     'https://6248-220-117-114-148.ngrok-free.app',
-    'https://f042-220-117-114-148.ngrok-free.app'# On met https + le domaine ngrok
+    'https://f042-220-117-114-148.ngrok-free.app'  # On met https + le domaine ngrok
 ]
-
 
 
 # Application definition
@@ -87,27 +83,19 @@ TEMPLATES = [
 WSGI_APPLICATION = "MyProject.wsgi.application"
 
 
-
-
-
 # Configuration de la base de données
-env_db_url = os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3")
 
-if env_db_url:
-    DATABASES = {
-        "default": dj_database_url.config(default=env_db_url)
-    }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": str(BASE_DIR / "db.sqlite3"),
-        }
-    }
-    
-    
-    
-    
+# Récupération de la variable d'environnement DATABASE_URL
+# Si elle n'est pas définie ou est vide, on utilise SQLite par défaut.
+database_url = os.environ.get("DATABASE_URL")
+if not database_url:
+    database_url = f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+
+DATABASES = {
+    "default": dj_database_url.config(default=database_url)
+}
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
