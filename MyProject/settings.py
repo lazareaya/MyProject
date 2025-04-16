@@ -89,25 +89,26 @@ WSGI_APPLICATION = "MyProject.wsgi.application"
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Vérifier si la variable d'environnement DATABASE_URL existe et n'est pas vide.
-# Si elle est vide, utiliser SQLite ; sinon, utiliser dj_database_url.
-env_db_url = os.environ.get('DATABASE_URL', '').strip()
 
+
+
+# Configuration de la base de données
+env_db_url = os.environ.get('DATABASE_URL', '').strip()
 if env_db_url:
-    # Si DATABASE_URL est fourni et non vide, utilisez dj_database_url.
-    import dj_database_url
     DATABASES = {
         "default": dj_database_url.config(default=env_db_url)
     }
 else:
-    # Si DATABASE_URL est vide, tomber sur la configuration SQLite.
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": str(BASE_DIR / "db.sqlite3"),
         }
     }
-
+    
+    
+    
+    
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
