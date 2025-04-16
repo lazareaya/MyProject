@@ -82,13 +82,24 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "MyProject.wsgi.application"
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Configuration de la base de données
-DATABASES = {
-    "default": dj_database_url.config(
-        default="postgresql://myproject_planning_user:HEUXO7Dh2tDgc8ozWcmojYuEBmBTHHAL@dpg-cvvp00idbo4c738d85jg-a/myproject_planning"
-    )
-}
+# Récupérer DATABASE_URL depuis l'environnement et supprimer les espaces inutiles
+env_db_url = os.environ.get('DATABASE_URL', '').strip()
+
+if env_db_url:
+    # Utilise dj_database_url.parse() pour une URL non vide
+    DATABASES = {
+        "default": dj_database_url.parse(env_db_url)
+    }
+else:
+    # Si DATABASE_URL est vide, utilise SQLite
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": str(BASE_DIR / "db.sqlite3"),
+        }
+    }
 
 
 # Password validation
