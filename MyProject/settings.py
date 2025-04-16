@@ -84,15 +84,10 @@ WSGI_APPLICATION = "MyProject.wsgi.application"
 
 
 # Configuration de la base de données
-
-# Récupération de la variable d'environnement DATABASE_URL
-# Si elle n'est pas définie ou est vide, on utilise SQLite par défaut.
-database_url = os.environ.get("DATABASE_URL")
-if not database_url:
-    database_url = f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
-
 DATABASES = {
-    "default": dj_database_url.config(default=database_url)
+    "default": dj_database_url.config(
+        default="postgresql://myproject_planning_user:HEUXO7Dh2tDgc8ozWcmojYuEBmBTHHAL@dpg-cvvp00idbo4c738d85jg-a/myproject_planning"
+    )
 }
 
 
