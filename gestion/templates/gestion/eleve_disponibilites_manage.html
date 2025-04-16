@@ -1,0 +1,10 @@
+{% extends "gestion/base.html" %}
+{% block title %}Gérer Disponibilités pour Élève: {{ eleve.nom }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Gérer Disponibilités pour Élève: {{ eleve.nom }}</h2>
+    <p>Cette page est actuellement vide. Ici, vous pourrez ajouter et modifier les disponibilités pour cet élève.</p>
+    <a href="{% url 'eleves_list' %}" class="btn btn-secondary mt-3">Retour à la liste des élèves</a>
+</div>
+{% endblock %}

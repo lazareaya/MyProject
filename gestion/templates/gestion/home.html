@@ -1,0 +1,46 @@
+{% extends "gestion/base.html" %}
+{% load static %}
+{% block title %}Dashboard Auto-école{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <!-- Jumbotron pour un accueil chaleureux -->
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Bienvenue dans votre Dashboard Auto-école</h1>
+        <p class="lead">Gérez facilement vos véhicules, moniteurs, et élèves à partir d'une interface intuitive et accessible.</p>
+    </div>
+    
+    <!-- Cartes pour chaque entité -->
+    <div class="row">
+        <!-- Carte Véhicules -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Véhicules</h5>
+                    <p class="card-text">Gérez l'ajout, la modification et la suppression de vos véhicules.</p>
+                    <a href="{% url 'vehicules_list' %}" class="btn btn-primary">Accéder aux Véhicules</a>
+                </div>
+            </div>
+        </div>
+        <!-- Carte Moniteurs -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Moniteurs</h5>
+                    <p class="card-text">Consultez et modifiez les informations concernant vos moniteurs.</p>
+                    <a href="{% url 'moniteurs_list' %}" class="btn btn-primary">Accéder aux Moniteurs</a>
+                </div>
+            </div>
+        </div>
+        <!-- Carte Élèves -->
+        <div class="col-md-4 mb-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Élèves</h5>
+                    <p class="card-text">Gérez les profils et disponibilités de vos élèves.</p>
+                    <a href="{% url 'eleves_list' %}" class="btn btn-primary">Accéder aux Élèves</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

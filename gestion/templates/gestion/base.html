@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Dashboard Auto-école{% endblock %}</title>
+    <!-- Lien vers le CDN Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <!-- Barre de navigation éventuellement intégrée -->
+    {% block content %}{% endblock %}
+    <!-- Scripts JavaScript de Bootstrap (optionnel) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

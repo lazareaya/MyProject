@@ -1,0 +1,25 @@
+{% extends "gestion/base.html" %}
+{% block title %}{% if object %}Modifier un Véhicule{% else %}Ajouter un Véhicule{% endif %}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{% if object %}Modifier un Véhicule{% else %}Ajouter un Véhicule{% endif %}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">
+            {% if object %}Enregistrer les modifications{% else %}Ajouter{% endif %}
+        </button>
+        <a href="{% url 'vehicules_list' %}" class="btn btn-secondary">Annuler</a>
+    </form>
+    {% if object %}
+      <a href="{% url 'vehicule_disponibilites_manage' object.pk %}" class="btn btn-info mt-3">
+          Gérer Disponibilités
+      </a>
+    {% else %}
+      <a href="#" class="btn btn-info mt-3 disabled" title="Enregistrez d'abord le véhicule pour gérer les disponibilités">
+          Gérer Disponibilités
+      </a>
+    {% endif %}
+</div>
+{% endblock %}

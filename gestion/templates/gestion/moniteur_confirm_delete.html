@@ -1,0 +1,14 @@
+{% extends "gestion/base.html" %}
+{% block title %}Supprimer le Moniteur{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Supprimer le moniteur "{{ object.nom }}" ?</h2>
+    <p>Êtes-vous sûr de vouloir supprimer ce moniteur ? Cette action est irréversible.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Supprimer</button>
+        <a href="{% url 'moniteurs_list' %}" class="btn btn-secondary">Annuler</a>
+    </form>
+</div>
+{% endblock %}

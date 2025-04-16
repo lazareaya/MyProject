@@ -1,0 +1,36 @@
+{% extends 'gestion/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Disponibilités du véhicule : {{ vehicule.nom }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ formset.management_form }}
+
+        <table class="table table-bordered table-striped">
+            <thead class="table-primary">
+                <tr>
+                    <th style="width: 30%;">Jour</th>
+                    <th style="width: 25%;">Heure début</th>
+                    <th style="width: 25%;">Heure fin</th>
+                    <th style="width: 20%;">Supprimer</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for form in formset %}
+                    <tr>
+                        <td>{{ form.jour }}</td>
+                        <td>{{ form.start_time }}</td>
+                        <td>{{ form.end_time }}</td>
+                        <td class="text-center">{{ form.DELETE }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn btn-success">Enregistrer</button>
+        <a href="{% url 'vehicules_list' %}" class="btn btn-secondary">Retour à la liste des véhicules</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "gestion/base.html" %}
+{% block title %}Liste des Moniteurs{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Liste des Moniteurs</h2>
+    <a href="{% url 'moniteur_add' %}" class="btn btn-primary mb-2">Ajouter un Moniteur</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Heures Consécutives Max</th>
+                <th>Heures Souhaitées par Semaine</th>
+                <th>Heure Maximale par Semaine</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for moniteur in moniteurs %}
+            <tr>
+                <td>{{ moniteur.nom }}</td>
+                <td>{{ moniteur.max_heures_consecutives }}</td>
+                <td>{{ moniteur.heures_souhaitees_semaine }}</td>
+                <td>{{ moniteur.heure_maximale_semaine }}</td>
+                <td>
+                    <a href="{% url 'moniteur_edit' moniteur.pk %}" class="btn btn-secondary btn-sm">Modifier</a>
+                    <a href="{% url 'moniteur_delete' moniteur.pk %}" class="btn btn-danger btn-sm">Supprimer</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">Aucun moniteur trouvé.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
