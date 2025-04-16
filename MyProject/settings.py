@@ -82,24 +82,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "MyProject.wsgi.application"
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-# Récupérer DATABASE_URL depuis l'environnement et supprimer les espaces inutiles
-env_db_url = os.environ.get('DATABASE_URL', '').strip()
-
-if env_db_url:
-    # Utilise dj_database_url.parse() pour une URL non vide
-    DATABASES = {
-        "default": dj_database_url.parse(env_db_url)
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "myproject_planning",
+        "USER": "myproject_planning_user",
+        "PASSWORD": "HEUXO7Dh2tDgc8ozWcmojYuEBmBTHHAL",
+        "HOST": "dpg-cvvp00idbo4c738d85jg-a",
+        "PORT": "5432",  # Le port par défaut pour PostgreSQL est généralement 5432. Vérifiez que c'est bien le cas pour votre service.
     }
-else:
-    # Si DATABASE_URL est vide, utilise SQLite
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": str(BASE_DIR / "db.sqlite3"),
-        }
-    }
+}
 
 
 # Password validation
