@@ -92,13 +92,16 @@ WSGI_APPLICATION = "MyProject.wsgi.application"
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Récupérer DATABASE_URL depuis l'environnement ; si elle est vide, utiliser SQLite comme fallback
-DATABASE_URL = os.environ.get('DATABASE_URL') or f"sqlite:///{str(BASE_DIR / 'db.sqlite3')}"
+# Récupérer DATABASE_URL depuis l'environnement
+env_db_url = os.environ.get('DATABASE_URL')
+if not env_db_url or env_db_url.strip() == '':
+    DATABASE_URL = f"sqlite:///{str(BASE_DIR / 'db.sqlite3')}"
+else:
+    DATABASE_URL = env_db_url
 
 DATABASES = {
     "default": dj_database_url.config(default=DATABASE_URL)
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
