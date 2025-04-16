@@ -87,13 +87,12 @@ TEMPLATES = [
 WSGI_APPLICATION = "MyProject.wsgi.application"
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 
 
 # Configuration de la base de données
-env_db_url = os.environ.get('DATABASE_URL', '').strip()
+env_db_url = os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3")
+
 if env_db_url:
     DATABASES = {
         "default": dj_database_url.config(default=env_db_url)
